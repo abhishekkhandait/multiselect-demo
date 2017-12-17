@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- including this css file or its content is very important -->
+    <link rel="stylesheet" type="text/css" href="jquery.multi-select.css">
+</head>
+
+<body>
+    <input id="hiddencities" type="hidden" value="Pune, Mumbai, Delhi, Chennai, Hyderabad, Bangalore, Kochi" />
+    <label for="people">Select Locations:</label>
+    <select id="cities" name="cities" multiple>
+        <!-- this <option tag is added as test to show how dropdown list items will be created> -->
+        <option value="testCity">testCity</option>
+    </select>
+
+    <!-- javascript starts here -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="jquery.multi-select.min.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            /* this method populates <select> tag with <options>*/
+            populateCities();
+        });
+
+        function populateCities() {
+            var cities = $("#hiddencities").val();;
+            var citiesArray = cities.split(",");
+            var ddl = $("#cities");
+            for (var i = 0; i < citiesArray.length; i++) {
+                var option = $("<option value=" + citiesArray[i] + ">" + citiesArray[i] + "</option>");
+                ddl.append(option);
+            }
+
+            $("#cities").multiSelect();
+        }
+
+    </script>
+</body>
+
+</html>
